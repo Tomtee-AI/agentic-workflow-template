@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Repository
+
+Remote: https://github.com/Tomtee-AI/agentic-workflow-template
+
 ## Architecture
 
 This project is a template for a production-grade, multi-tier agentic AI application based on the [Multi-Tier Agentic Workflow reference design](docs/Multi_Tier_Agentic_Workflow.md). The six tiers are strictly separated; a higher tier never reaches across an intermediate tier.
