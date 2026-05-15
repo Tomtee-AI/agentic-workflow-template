@@ -1,0 +1,29 @@
+# Linear pipeline: research → summarize → store
+# Pattern: Tier 2 interprets this; no code change needed to modify the flow.
+
+name: linear_pipeline
+version: "1.0.0"
+pattern: linear
+budget:
+  max_tokens: 50000
+  max_usd: 2.00
+  timeout_seconds: 120
+
+steps:
+  - id: research
+    agent_capability: research
+    inputs:
+      query: "{{intent}}"
+      max_sources: 5
+
+  - id: summarize
+    agent_capability: summarize
+    depends_on: [research]
+    inputs:
+      content: "{{research.output.summary}}"
+
+  - id: store
+    agent_capability: store
+    depends_on: [summarize]
+    inputs:
+      data: "{{summarize.output}}"

@@ -1,0 +1,13 @@
+capability: research
+version: "1.0.0"
+allowed_tools:
+  - web_search
+  - document_fetch
+  - vector_search
+cost_class: medium
+latency_class: batch
+safety_class: read-only
+budget:
+  max_tokens: 20000
+  max_usd: 0.50
+  timeout_seconds: 60
