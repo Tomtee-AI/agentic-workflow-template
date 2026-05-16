@@ -1,0 +1,24 @@
+# Default policy rules — version-controlled, applied at runtime by the policy engine.
+# enforcement: "deny" | "deny_until_approved" | "require"
+
+version: "1.0.0"
+rules:
+  - id: agent_tool_allowlist
+    description: Agents may only call tools declared in their capability manifest.
+    enforcement: deny
+
+  - id: destructive_requires_approval
+    description: Destructive tool operations require explicit human approval before execution.
+    enforcement: deny_until_approved
+
+  - id: data_classification_boundary
+    description: Data classified as confidential or restricted may not leave its trust boundary via tool calls.
+    enforcement: deny
+
+  - id: quorum_for_consequential
+    description: Agents with quorum_required=true must route through the quorum dispatcher.
+    enforcement: require
+
+  - id: secrets_not_in_prompts
+    description: Secret values must not appear in any prompt, log, or trace payload.
+    enforcement: deny

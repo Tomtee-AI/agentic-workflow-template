@@ -8,22 +8,29 @@ budget:
   max_tokens: 50000
   max_usd: 2.00
   timeout_seconds: 120
+  max_retries_per_step: 3
 
 steps:
   - id: research
-    agent_capability: research
+    agent: research@1.0.0
+    quorum_required: false
     inputs:
       query: "{{intent}}"
       max_sources: 5
 
   - id: summarize
-    agent_capability: summarize
+    agent: summarize@1.0.0
     depends_on: [research]
+    quorum_required: false
     inputs:
       content: "{{research.output.summary}}"
 
   - id: store
-    agent_capability: store
+    agent: store@1.0.0
     depends_on: [summarize]
+    quorum_required: false
     inputs:
       data: "{{summarize.output}}"
+
+policy:
+  human_approval_required_for: []

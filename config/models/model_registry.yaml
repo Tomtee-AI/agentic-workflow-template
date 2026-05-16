@@ -1,0 +1,34 @@
+# Model registry — approval status, cost/latency/safety class, fallback chain.
+# Routing policy consults this; no model is used unless listed here as approved.
+
+version: "1.0.0"
+models:
+  - id: claude-sonnet-4-6
+    provider: anthropic
+    approval_status: approved    # approved | deprecated | experimental
+    cost_class: medium
+    latency_class: medium
+    safety_class: standard
+    data_residency: [us]
+    quorum_eligible: true
+    fallback: claude-haiku-4-5-20251001
+
+  - id: claude-haiku-4-5-20251001
+    provider: anthropic
+    approval_status: approved
+    cost_class: low
+    latency_class: fast
+    safety_class: standard
+    data_residency: [us]
+    quorum_eligible: true
+    fallback: null
+
+  - id: claude-opus-4-7
+    provider: anthropic
+    approval_status: approved
+    cost_class: high
+    latency_class: slow
+    safety_class: elevated
+    data_residency: [us]
+    quorum_eligible: true
+    fallback: claude-sonnet-4-6

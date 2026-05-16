@@ -1,13 +1,22 @@
-capability: research
+id: research
 version: "1.0.0"
 allowed_tools:
   - web_search
   - document_fetch
   - vector_search
 cost_class: medium
-latency_class: batch
-safety_class: read-only
+latency_class: medium
+safety_class: standard
+data_access:
+  - public
+  - internal
+quorum_required: false
+quorum_min_instances: 3
+quorum_threshold: 0.7
+requires_human_approval: false
 budget:
   max_tokens: 20000
   max_usd: 0.50
   timeout_seconds: 60
+  max_tool_calls: 10
+  max_retries: 3
